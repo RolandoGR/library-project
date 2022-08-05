@@ -360,13 +360,49 @@
   box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
 }
 .main {
+  display: grid;
+  grid: 0.5fr 2fr 2fr 2fr / 1fr 1fr 1fr 1fr;
   background-color: rgb(202, 202, 202);
-  padding: 50px;
+  padding: 10px;
+  gap: 15px;
 }
+
+.inputNew {
+  grid-area: 1 / 1 / 2 / 5;
+}
+
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   background-color: rgb(54, 54, 54);
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.addBtn {
+  border-radius: 10px;
+  background-color: rgb(166, 109, 219);
+  transition: 0.3s;
+  padding: 5px 15px;
+}
+
+.addBtn:hover {
+  color: white;
+  background-color: rgb(85, 26, 141);
+  cursor: pointer;
+}
+
+.bookListed {
+  display: flex;
+  padding: 10px;
+  border-radius: 15px;
+  flex-direction: column;
+  border: thin solid grey;
+  background-color: white;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+}
+
+.bookListed>ul>li {
+  list-style: none;
 }
