@@ -351,8 +351,9 @@
 .container {
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 6fr 0.5fr;
+  grid-template-rows: 0.5fr 6fr 0.5fr;
   font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
   }
 
 .hero {
@@ -362,13 +363,28 @@
 .main {
   display: grid;
   grid: 0.5fr 2fr 2fr 2fr / 1fr 1fr 1fr 1fr;
-  background-color: rgb(202, 202, 202);
-  padding: 10px;
+  background-color: rgb(223, 223, 223);
+  padding: 0px 20px;
   gap: 15px;
 }
 
 .inputNew {
   grid-area: 1 / 1 / 2 / 5;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  column-gap: 15px ;
+}
+
+input {
+  border: none;
+  border-radius: 10px;
+  height: 1.5rem;
+}
+
+label {
+  margin-left: 10px;
+  margin-right: 5px;
 }
 
 .footer {
@@ -382,9 +398,12 @@
 
 .addBtn {
   border-radius: 10px;
+  border: none;
   background-color: rgb(166, 109, 219);
   transition: 0.3s;
-  padding: 5px 15px;
+  padding: 5px 20px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+
 }
 
 .addBtn:hover {
@@ -403,6 +422,17 @@
   box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
 }
 
+ul {
+  padding: 10px;
+}
+
 .bookListed>ul>li {
   list-style: none;
+  padding: 5px;
+}
+.listTitle {
+  font-size: 1.1rem;
+  color: rgb(101, 32, 165);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  font-weight: 500;
 }

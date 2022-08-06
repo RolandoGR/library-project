@@ -1,5 +1,7 @@
 const addBtn = document.getElementById('addBtn')
 
+
+
 let myLibrary = [
     {   title: "Harry Potter and the Philosoper's stone",
         author: "J. K. Rowling",
@@ -12,12 +14,11 @@ let myLibrary = [
 ];
 
 function showBooks() {
-    for (let book of myLibrary){
-            console.log(book)
+    for (let [i, book] of myLibrary.entries()){
+            console.log(i, book)
             let currentTitle = book.title
             let currentAuthor = book.author
             let currentPages = book.pages
-
 
             const div = document.createElement("div");
             const main = document.querySelector('.main');
@@ -25,13 +26,23 @@ function showBooks() {
             const listTitle = document.createElement("li")
             const listAuthor = document.createElement("li")
             const listPages = document.createElement("li")
+            const removeBtn = document.createElement("button")
 
-            listTitle.textContent += `Title: ${currentTitle}`;
+
+            listTitle.textContent += `"${currentTitle}"`;
+            listTitle.classList.add('listTitle')
             listAuthor.textContent += `Author: ${currentAuthor}`;
             listPages.textContent += `Pages: ${currentPages}`;
+            removeBtn.textContent += 'Remove book'
+            removeBtn.addEventListener('click', function() {
+                myLibrary.splice(i,1)
+                document.querySelector(`[data-position = "${i}"]`).remove()
+            })
+
             ul.append(listTitle, listAuthor, listPages)
-            div.appendChild(ul)
-            div.classList.add('bookListed');
+            div.append(ul, removeBtn)
+            div.classList.add('bookListed')
+            div.dataset.position = i;
             main.appendChild(div);   
 
     }
@@ -62,9 +73,9 @@ function removeAllCards() {
 
 showBooks();
 
-
 addBtn.addEventListener('click', function () {
     addBookToLibrary();
     removeAllCards()
     showBooks()
+
 });
