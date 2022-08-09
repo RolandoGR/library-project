@@ -85,6 +85,7 @@ function showBooks() {
                 if (currentStatus === true) {
                     listStatus.textContent += `Already read this book!`;
                     listStatus.classList.add('readYes');
+                    statusBtn.checked = true
                     } else {
                         listStatus.textContent += `Not read yet`;
                         listStatus.classList.add('readNo');
@@ -102,7 +103,8 @@ function showBooks() {
                         listStatus.textContent = `Already read this book!`;
                         listStatus.className = 'readYes';
                     }                
-                    currentStatus = !currentStatus
+                myLibrary[i].status = !myLibrary[i].status
+                currentStatus = !currentStatus
                 })  
 
             removeBtn.textContent += 'Remove book'
