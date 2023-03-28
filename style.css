@@ -168,6 +168,32 @@ textarea {
   margin: 0; /* 2 */
 }
 
+input:required:placeholder-shown {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  outline: none;
+  border: none; /* no border when there's no input */
+}
+
+/* style for input field with value */
+input:required:not(:placeholder-shown):focus {
+  outline: 2px solid purple;
+  border: none; /* no border when input value is valid */
+}
+
+form input:invalid:not(:placeholder-shown) {
+  background-color: ivory;
+  border: none; /* no border when input value is invalid */
+  outline: 2px solid red;
+  border-radius: 5px;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
 /**
    * Show the overflow in IE.
    * 1. Show the overflow in Edge.

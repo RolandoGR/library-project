@@ -9,13 +9,22 @@ const heroTitle = document.createElement("h1");
 heroTitle.textContent = "Library.";
 hero.appendChild(heroTitle);
 
-// Create the main div and its child elements
+// Create the main div
 const main = document.createElement("div");
 main.classList.add("main");
-const inputNew = document.createElement("div");
+
+// Create form for new book entries
+const inputNew = document.createElement("form");
 inputNew.classList.add("inputNew");
 inputNew.setAttribute("method", "#");
 inputNew.setAttribute("action", "#");
+inputNew.addEventListener("submit", (event) => {
+  event.preventDefault();
+  addBookToLibrary();
+  removeAllCards();
+  showBooks();
+});
+
 const titleInput = document.createElement("div");
 titleInput.classList.add("titleInput");
 const titleLabel = document.createElement("label");
@@ -26,6 +35,8 @@ titleInputField.setAttribute("type", "text");
 titleInputField.setAttribute("name", "title");
 titleInputField.setAttribute("id", "bookTitle");
 titleInputField.setAttribute("placeholder", "The Hobbit");
+titleInputField.setAttribute("pattern", "^[a-zA-Z0-9s-]+$");
+titleInputField.setAttribute("required", true);
 titleInput.appendChild(titleLabel);
 titleInput.appendChild(titleInputField);
 
@@ -39,6 +50,8 @@ authorInputField.setAttribute("type", "text");
 authorInputField.setAttribute("name", "author");
 authorInputField.setAttribute("id", "author");
 authorInputField.setAttribute("placeholder", "J.R.R. Tolkien");
+authorInputField.setAttribute("pattern", "[a-zA-Zs'-.]+$");
+authorInputField.setAttribute("required", true);
 authorInput.appendChild(authorLabel);
 authorInput.appendChild(authorInputField);
 
@@ -52,6 +65,19 @@ pagesInputField.setAttribute("type", "text");
 pagesInputField.setAttribute("name", "pages");
 pagesInputField.setAttribute("id", "pages");
 pagesInputField.setAttribute("placeholder", "354");
+pagesInputField.setAttribute("pattern", "[0-9]*");
+pagesInputField.setAttribute("required", true);
+pagesInputField.setAttribute("maxlength", "5");
+pagesInputField.addEventListener("input", (event) => {
+  if (pagesInputField.validity.patternMismatch) {
+    pagesInputField.setCustomValidity(
+      "Por favor, ingresa un número de páginas"
+    );
+  } else {
+    pagesInputField.setCustomValidity("");
+  }
+});
+
 pagesInput.appendChild(pagesLabel);
 pagesInput.appendChild(pagesInputField);
 
@@ -72,14 +98,11 @@ statusInput.appendChild(switchLabel);
 const addBtn = document.createElement("button");
 addBtn.classList.add("addBtn");
 addBtn.setAttribute("id", "addBtn");
+addBtn.setAttribute("type", "submit");
 addBtn.textContent = "+ Add book";
 
-console.log("here");
-addBtn.addEventListener("click", () => {
-  console.log("here");
-  addBookToLibrary();
-  removeAllCards();
-  showBooks();
+addBtn.addEventListener("click", (event) => {
+  formVal(event);
 });
 
 let myLibrary = [
@@ -219,3 +242,8 @@ container.appendChild(footer);
 document.body.appendChild(container);
 
 showBooks();
+
+function formVal(event) {
+  console.log("about to validate...");
+  console.log(pagesInputField.validity.patternMismatch);
+}
