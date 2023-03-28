@@ -101,10 +101,6 @@ addBtn.setAttribute("id", "addBtn");
 addBtn.setAttribute("type", "submit");
 addBtn.textContent = "+ Add book";
 
-addBtn.addEventListener("click", (event) => {
-  formVal(event);
-});
-
 let myLibrary = [
   {
     title: "Harry Potter and the Philosoper's stone",
@@ -242,8 +238,3 @@ container.appendChild(footer);
 document.body.appendChild(container);
 
 showBooks();
-
-function formVal(event) {
-  console.log("about to validate...");
-  console.log(pagesInputField.validity.patternMismatch);
-}
